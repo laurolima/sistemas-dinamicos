@@ -22,16 +22,31 @@ ylim([0,1])
 axis square;
 hold on;
 
-oa1 = 0;
-oa2 = 0;
-ob = 0;
-k = 0;
-for i = 1:1000
-  x = [x, tent(x(end))];
-  [oa1, oa2, ob] = dplot(x,erase,s1,s2,oa1,oa2,ob);
-  
+k=0;
+for i = 1:100
+  if mod(i,2)
+    x = [x, tent(x(end))];
+    hxy = dplot(x,s2,"xyplot",'mo');
+    hmh = dplot(x,s1,"rmapv","k--o");
+  else
+    hmv = dplot(x,s1,"rmaph","k--o");
+  end
+  pause(0.5)
   if k == 0
     k = waitforbuttonpress;
   endif
-  
 end
+%
+%oa1 = 0;
+%oa2 = 0;
+%ob = 0;
+%k = 0;
+%for i = 1:1000
+%  x = [x, tent(x(end))];
+%  [oa1, oa2, ob] = dplot(x,erase,s1,s2,oa1,oa2,ob);
+%  
+%  if k == 0
+%    k = waitforbuttonpress;
+%  endif
+%  
+%end
